@@ -1,0 +1,15 @@
+<svg id="ar" xmlns="http://www.w3.org/2000/svg" width="102.242" height="35.002" viewBox="0 0 111 38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #bb9c66;
+        stroke-width: 3px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M1029.38,1313.71l-0.7-.7L1011,1330.5l0.71,0.7Zm-17.67,16.09-0.71.7,17.68,17.49,0.7-.7Z" transform="translate(-1009.5 -1311.5)"/>
+  <path class="cls-1" d="M1036.38,1313.71l-0.7-.7L1018,1330.5l0.71,0.7Zm-17.67,16.09-0.71.7,17.68,17.49,0.7-.7Z" transform="translate(-1009.5 -1311.5)"/>
+  <path class="cls-1" d="M1119,1330.5v-0.99H1012v0.99h107Z" transform="translate(-1009.5 -1311.5)"/>
+</svg>
