@@ -53,81 +53,26 @@ const swiper3 = new Swiper('.main-slider', {
 });
 //  =====================================================================================================
 
-// ============== BildSlider ============================================================================
-let sliders = document.querySelectorAll('._swiper');
-if (sliders) {
-	for (let index = 0; index < sliders.length; index++) {
-		let slider = sliders[index];
-		if (!slider.classList.contains('swiper-bild')) {
-			let slider_items = slider.children;
-			if (slider_items) {
-				for (let index = 0; index < slider_items.length; index++) {
-					let el = slider_items[index];
-					el.classList.add('swiper-slide');
-				}
-			}
-			let slider_content = slider.innerHTML;
-			let slider_wrapper = document.createElement('div');
-			slider_wrapper.classList.add('swiper-wrapper');
-			slider_wrapper.innerHTML = slider_content;
-			slider.innerHTML = '';
-			slider.appendChild(slider_wrapper)
-			slider.classList.add('swiper-bild');
-		}
-	}
-	sliders_bild_callback()
-}
-
-function sliders_bild_callback(params) { }
-//  ======================================================================================================
-
 //  ======== lots-swiper =================================================================================
-let lots_slider = new Swiper('.slider-lots__body', {
-	/*
-	effect: 'fade',
-	autoplay: {
-		delay: 3000,
-		disableOnInteraction: false,
-	},
-	*/
+let lots_slider = new Swiper('.lots__slider', {
 	observer: true,
 	observeParents: true,
 	slidesPerView: 1,
 	spaceBetween: 0,
-	// centeredSlides: true,
-	// autoHeight: true,
 	speed: 800,
-	// touchRatio: 0,
-	// simulateTouch: false,
 	loop: true,
-	// preloadImages: false,
-	// lazy: true,
-	// Dotts
-	// pagination: {
-	// 	el: '.slider-quality__pagging',
-	// 	clickable: true,
-	// },
-	// Arrows
 	navigation: {
 		nextEl: '.control-slider-lots__arrow_next',
 		prevEl: '.control-slider-lots__arrow_prev',
 	},
 
 	breakpoints: {
-		// 320: {
-		// 	slidesPerView: 1,
-		// },
 		550: {
 			slidesPerView: 2,
-			// centeredSlides: false,
 		},
 		872: {
 			slidesPerView: 3,
 		},
-		// 1268: {
-		// 	slidesPerView: 1,
-		// 	spaceBetween: 0,
-		// },
 	},
 
 	on: {
@@ -135,14 +80,10 @@ let lots_slider = new Swiper('.slider-lots__body', {
 			ibg();
 		},
 	}
-	// And if we need scrollbar
-	// scrollbar: {
-	// el: '.swiper-scrollbar',
-	// },
 })
 // ======================================================================================================
 
-//=================== Прокрутка при клике ================================================================
+//=================== Прокрутка при клике ===============================================================
 const menuLinks = document.querySelectorAll('.menu__link[data-goto]')
 if (menuLinks.length > 0) {
 	menuLinks.forEach(menuLink => {
@@ -154,11 +95,12 @@ if (menuLinks.length > 0) {
 		if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
 			const gotoBlock = document.querySelector(menuLink.dataset.goto)
 			const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY - document.querySelector('header').offsetHeight
+			// выделение пункта меню при клике на него ==========
 			// menuLinks.forEach(menuLink => {
 			// 	menuLink.classList.remove('_active')
 			// })
 			// menuLink.classList.add('_active')
-
+			// ==================================================
 			if (iconMenu.classList.contains('_active')) {
 				document.body.classList.remove('_lock')
 				iconMenu.classList.remove('_active')
@@ -175,4 +117,18 @@ if (menuLinks.length > 0) {
 }
 //  ======================================================================================================
 
-
+//  ========== выделение пункта меню при скролле =========================================================
+window.addEventListener('scroll', () => {
+	let scrollDistance = window.scrollY;
+	document.querySelectorAll('.active-scroll').forEach((el, i) => {
+		if (el.offsetTop - document.querySelector('header').clientHeight - 1 <= scrollDistance) {
+			document.querySelectorAll('.menu__body a').forEach((el) => {
+				if (el.classList.contains('_active')) {
+					el.classList.remove('_active')
+				}
+			})
+			document.querySelectorAll('.menu__body li')[i].querySelector('a').classList.add('_active')
+		}
+	})
+})
+//  ======================================================================================================
